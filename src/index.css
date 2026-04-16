@@ -1,8 +1,22 @@
 :root {
   --crimson: #db2350;
+  --orange: #fcc512;
+  --dark-orange: #d35e0f;
+  --orange-2: #ef940f;
+  --plum: #ff474f;
+  --plum-2: #ff908e;
+  --ggreen: #00693b;
+  --yellow-green: #89ca3b;
+  --yellow-green-2: #cbd543;
+  --yellow-green-3: #6da742;
+  --light-sky-blue: #1d77bd;
+  --sky-blue-2: #4ea3cf;
+  --light-blue-2: #80cbd8;
+  --dodger-blue: #0c5572;
   --black: #392e44;
   --white: #ffffff;
   --linen: #f1f1f1;
+  --gainsboro: #f3f3f3;
 }
 
 *,
@@ -15,6 +29,100 @@
 
 body {
   font-family: "Campton", Arial, sans-serif;
+  font-weight: 300;
   color: var(--black);
   background-color: var(--linen);
+  line-height: 1.6;
+}
+
+.homepage {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--crimson);
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--black);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* Stages */
+.stages {
+  padding: 2rem 0;
+}
+
+.stages h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dodger-blue);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.stages-intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+}
+
+.stages-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.stage-card {
+  background: var(--white);
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0 15px 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.stage-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ggreen);
+  margin-bottom: 0.35rem;
+}
+
+.stage-card p {
+  color: var(--black);
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 2.5rem 0 0;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--crimson);
+  color: var(--white);
+  font-family: "Campton", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.85rem 2.5rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.cta-button:hover {
+  transform: scale(0.95);
 }
