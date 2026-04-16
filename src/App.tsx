@@ -5,8 +5,7 @@ const stages = [
   },
   {
     name: "Feel",
-    description:
-      "Reflect on how you're feeling right now, without judgement.",
+    description: "Reflect on how you're feeling right now, without judgement.",
   },
   {
     name: "Gratitude",
@@ -24,8 +23,8 @@ export function App() {
       <header className="hero">
         <h1>Daily Check-In</h1>
         <p className="hero-subtitle">
-          A short daily practice to help you start your day with intention.
-          Sign up and receive a guided check-in email every day at 10 AM.
+          A short daily practice to help you start your day with intention. Sign
+          up and receive a guided check-in email every day at 10 AM.
         </p>
       </header>
 
