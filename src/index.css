@@ -226,6 +226,13 @@ body {
   line-height: 1.6;
 }
 
+.breathe-instruction {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  color: var(--dodger-blue);
+  font-weight: 700;
+}
+
 .stage-content textarea {
   width: 100%;
   min-height: 120px;
