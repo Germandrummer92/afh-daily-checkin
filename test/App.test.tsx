@@ -60,7 +60,11 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(await screen.findByText(/A guided breathing exercise to calm and centre yourself./i)).toBeInTheDocument();
+    expect(
+      await screen.findByText(
+        /A guided breathing exercise to calm and centre yourself./i,
+      ),
+    ).toBeInTheDocument();
   });
 
   it("shows the Daily Check-In heading", async () => {

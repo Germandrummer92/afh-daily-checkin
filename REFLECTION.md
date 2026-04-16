@@ -8,6 +8,10 @@ On the frontend, React Router handles navigation between the check-in steps and 
 
 I also chose Biome over ESLint/Prettier for linting and formatting. It's faster and simpler to configure, but the ecosystem of plugins is smaller. For a project this size that trade-off is clearly worth it.
 
+Normally I would use a component library (e.g. Radix, MUI) and/or a CSS utility framework like Tailwind, but I was already running out of time so I kept the frontend dependencies lean and used vanilla CSS.
+
+The `.env` file is checked into version control, which is fine here because it only contains non-secret values (the Supabase local development URL and the public anon key). In a real production setup, secrets would be managed outside the repo.
+
 ## Limitations
 
 The most obvious gap is that **completed check-ins aren't visible anywhere** after submission. Users go through the flow, their data is saved, but there's no history view, no streaks, no way to look back at what they wrote. This is the first thing I'd build next — it's essential for the habit-forming loop the app is trying to create.
@@ -25,6 +29,10 @@ For email delivery the function supports two providers, selected by environment 
 Keeping the scheduler inside the database (pg_cron → pg_net → Edge Function) means there is no separate cron host to maintain and the secrets never leave Supabase's Vault. The trade-off is debuggability: if the HTTP call fails silently, there is no built-in retry or dead-letter queue — you'd need to check the `net._http_response` table manually. Adding observability (logging, retry logic, or a webhook on failure) would be a sensible next step for production use.
 
 **Important caveat:** the local email flow (pg_cron → Edge Function → Inbucket) was not end-to-end tested during development due to time constraints. The individual pieces — the Edge Function code, the email template, the migration SQL — were written and reviewed, but the full chain was never triggered locally to confirm that emails actually arrive in Inbucket. There may be issues with networking between containers, Vault secret resolution at runtime, or SMTP handshake details that only surface when the whole pipeline runs together. This should be validated before relying on it.
+
+## Deployment
+
+The backend is straightforward to deploy since Supabase handles it — the database, auth, edge functions, and cron jobs all live on their managed platform, so there's no separate infrastructure to provision. The frontend is a static React build (`pnpm build` produces a bundle of HTML, JS, and CSS), which means it can be served from any object storage bucket (S3, GCS, R2, etc.) behind a load balancer or CDN, with DNS pointing to the bucket. There's no server-side rendering or Node process to run.
 
 ## Next Steps
 
