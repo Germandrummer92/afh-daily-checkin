@@ -1,15 +1,17 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { AuthProvider, useAuth } from "./auth/AuthProvider";
-import { CheckInPage } from "./pages/CheckInPage";
-import { LoginPage } from "./pages/LoginPage";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {AuthProvider, useAuth} from "./auth/AuthProvider";
+import {CheckInPage} from "./pages/CheckInPage";
+import {LoginPage} from "./pages/LoginPage";
+import {HomePage} from "./pages/HomePage";
+import type React from "react";
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute(props: React.PropsWithChildren) {
   const { session, loading } = useAuth();
 
   if (loading) return null;
   if (!session) return <Navigate to="/login" replace />;
 
-  return children;
+  return props.children;
 }
 
 function AppRoutes() {
@@ -22,6 +24,9 @@ function AppRoutes() {
       <Route
         path="/login"
         element={session ? <Navigate to="/check-in" replace /> : <LoginPage />}
+      /><Route
+        path="/home"
+        element={session ? <Navigate to="/check-in" replace /> : <HomePage />}
       />
       <Route
         path="/check-in"
@@ -33,7 +38,7 @@ function AppRoutes() {
       />
       <Route
         path="*"
-        element={<Navigate to={session ? "/check-in" : "/login"} replace />}
+        element={<Navigate to={session ? "/check-in" : "/home"} replace />}
       />
     </Routes>
   );

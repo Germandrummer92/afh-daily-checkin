@@ -17,7 +17,7 @@ const stages = [
     },
 ];
 
-export function Home() {
+export function HomePage() {
     return (
         <div className="homepage">
             <header className="hero">
