@@ -126,3 +126,196 @@ body {
 .cta-button:hover {
   transform: scale(0.95);
 }
+
+/* Check-in Page */
+.check-in-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.check-in-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ggreen);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  max-width: 140px;
+  position: relative;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--gainsboro);
+  color: var(--black);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.step-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--black);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.step--active .step-number {
+  background: var(--crimson);
+  color: var(--white);
+}
+
+.step--active .step-name {
+  opacity: 1;
+  color: var(--crimson);
+}
+
+.step--completed .step-number {
+  background: var(--ggreen);
+  color: var(--white);
+}
+
+.step--completed .step-name {
+  opacity: 1;
+  color: var(--ggreen);
+}
+
+/* Stage Content */
+.stage-content {
+  background: var(--white);
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0 15px 20px -10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.stage-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dodger-blue);
+  margin-bottom: 1rem;
+}
+
+.stage-content p {
+  color: var(--black);
+  line-height: 1.6;
+}
+
+.breathe-instruction {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  color: var(--dodger-blue);
+  font-weight: 700;
+}
+
+.stage-content textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 2px solid var(--gainsboro);
+  border-radius: 5px;
+  font-family: "Campton", Arial, sans-serif;
+  font-size: 1rem;
+  color: var(--black);
+  resize: vertical;
+  line-height: 1.6;
+  transition: border-color 0.2s;
+}
+
+.stage-content textarea:focus {
+  outline: none;
+  border-color: var(--light-sky-blue);
+}
+
+/* Stage Actions */
+.stage-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.stage-actions button {
+  font-family: "Campton", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.stage-actions button:hover {
+  transform: scale(0.95);
+}
+
+.stage-actions button:first-child:not(:only-child) {
+  background: var(--white);
+  color: var(--black);
+  border: 2px solid var(--gainsboro);
+}
+
+.stage-actions button:last-child {
+  background: var(--crimson);
+  color: var(--white);
+}
+
+/* Success Screen */
+.success {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 15px 20px -10px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+}
+
+.success-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.5rem;
+  background: var(--ggreen);
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 100px;
+}
+
+.success h1 {
+  color: var(--ggreen);
+}
+
+.success p {
+  font-size: 1.15rem;
+  color: var(--black);
+  max-width: 400px;
+  margin: 0 auto;
+}
