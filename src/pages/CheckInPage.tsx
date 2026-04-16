@@ -76,7 +76,14 @@ export function CheckInPage() {
         <h2>{stage.name}</h2>
 
         {currentStep === 0 && (
-          <p>A guided breathing exercise to calm and centre yourself.</p>
+          <>
+            <p>A guided breathing exercise to calm and centre yourself.</p>
+            <p className="breathe-instruction">
+              For 30 seconds, slowly count your breaths. Breathe in deeply
+              through your nose, hold for a moment, and exhale gently through
+              your mouth.
+            </p>
+          </>
         )}
 
         {currentStep === 1 && (
