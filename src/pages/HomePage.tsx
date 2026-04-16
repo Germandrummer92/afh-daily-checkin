@@ -44,7 +44,7 @@ export function HomePage() {
             </section>
 
             <section className="cta">
-                <a href="/signup" className="cta-button">
+                <a href="/login" className="cta-button">
                     Sign Up
                 </a>
             </section>
