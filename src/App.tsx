@@ -1,9 +1,9 @@
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {AuthProvider, useAuth} from "./auth/AuthProvider";
-import {CheckInPage} from "./pages/CheckInPage";
-import {LoginPage} from "./pages/LoginPage";
-import {HomePage} from "./pages/HomePage";
 import type React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AuthProvider, useAuth } from "./auth/AuthProvider";
+import { CheckInPage } from "./pages/CheckInPage";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/LoginPage";
 
 function ProtectedRoute(props: React.PropsWithChildren) {
   const { session, loading } = useAuth();
@@ -24,7 +24,8 @@ function AppRoutes() {
       <Route
         path="/login"
         element={session ? <Navigate to="/check-in" replace /> : <LoginPage />}
-      /><Route
+      />
+      <Route
         path="/home"
         element={session ? <Navigate to="/check-in" replace /> : <HomePage />}
       />

@@ -26,6 +26,7 @@ import { supabase } from "../src/auth/supabaseClient";
 
 describe("App", () => {
   beforeEach(() => {
+    window.history.pushState({}, "", "/");
     vi.clearAllMocks();
     (supabase.auth.getSession as Mock).mockResolvedValue({
       data: { session: null },
@@ -36,11 +37,14 @@ describe("App", () => {
     });
   });
 
-  it("shows the login page when user is not authenticated", async () => {
+  it("shows the homepage when user is not authenticated", async () => {
     render(<App />);
 
     expect(
-      await screen.findByRole("button", { name: "Log in" }),
+      await screen.findByRole("heading", { name: "Daily Check-In" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/help you start your day with intention/i),
     ).toBeInTheDocument();
   });
 
@@ -67,46 +71,48 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
-  it("explains the purpose of the app", () => {
+  it("explains the purpose of the app", async () => {
     render(<App />);
     expect(
-      screen.getByText(/help you start your day with intention/i),
+      await screen.findByText(/help you start your day with intention/i),
     ).toBeInTheDocument();
   });
 
-  it("describes the daily email after signup", () => {
+  it("describes the daily email after signup", async () => {
     render(<App />);
-    expect(screen.getByText(/10\s?AM/i)).toBeInTheDocument();
+    expect(await screen.findByText(/10\s?AM/i)).toBeInTheDocument();
   });
 
-  it("lists the Breathe stage", () => {
+  it("lists the Breathe stage", async () => {
     render(<App />);
-    expect(screen.getByText("Breathe")).toBeInTheDocument();
+    expect(await screen.findByText("Breathe")).toBeInTheDocument();
     expect(screen.getByText(/guided breathing exercise/i)).toBeInTheDocument();
   });
 
-  it("lists the Feel stage", () => {
+  it("lists the Feel stage", async () => {
     render(<App />);
-    expect(screen.getByText("Feel")).toBeInTheDocument();
+    expect(await screen.findByText("Feel")).toBeInTheDocument();
     expect(screen.getByText(/how you're feeling/i)).toBeInTheDocument();
   });
 
-  it("lists the Gratitude stage", () => {
+  it("lists the Gratitude stage", async () => {
     render(<App />);
-    expect(screen.getByText("Gratitude")).toBeInTheDocument();
+    expect(await screen.findByText("Gratitude")).toBeInTheDocument();
     expect(
       screen.getByText(/something you're grateful for/i),
     ).toBeInTheDocument();
   });
 
-  it("lists the Intention stage", () => {
+  it("lists the Intention stage", async () => {
     render(<App />);
-    expect(screen.getByText("Intention")).toBeInTheDocument();
+    expect(await screen.findByText("Intention")).toBeInTheDocument();
     expect(screen.getByText(/positive intention/i)).toBeInTheDocument();
   });
 
-  it("has a sign-up call to action", () => {
+  it("has a sign-up call to action", async () => {
     render(<App />);
-    expect(screen.getByRole("link", { name: /sign up/i })).toBeInTheDocument();
+    expect(
+      await screen.findByRole("link", { name: /sign up/i }),
+    ).toBeInTheDocument();
   });
 });
