@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { CheckInPage } from "../src/CheckInPage";
+import { CheckInPage } from "../src/pages/CheckInPage";
 
 vi.mock("../src/supabaseClient", () => ({
   supabase: {
@@ -39,6 +39,13 @@ describe("CheckInPage", () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(/guided breathing exercise/i),
+      ).toBeInTheDocument();
+    });
+
+    it("shows breathing instructions", () => {
+      render(<CheckInPage />);
+      expect(
+        screen.getByText(/slowly count your breaths/i),
       ).toBeInTheDocument();
     });
 
@@ -163,7 +170,7 @@ describe("CheckInPage", () => {
       });
     });
 
-    it("shows a confirmation after successful submit", async () => {
+    it("shows a success screen after successful submit", async () => {
       const { supabase } = await import("../src/supabaseClient");
       vi.mocked(supabase.from).mockReturnValue({
         insert: vi.fn(() => ({ error: null })),
@@ -177,7 +184,14 @@ describe("CheckInPage", () => {
       await user.click(screen.getByRole("button", { name: /next/i }));
       await user.click(screen.getByRole("button", { name: /submit/i }));
 
-      expect(await screen.findByText(/check-in complete/i)).toBeInTheDocument();
+      const successScreen = await screen.findByRole("status");
+      expect(successScreen).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /check-in complete/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/thank you for taking a moment for yourself today/i),
+      ).toBeInTheDocument();
     });
   });
 

@@ -277,3 +277,38 @@ body {
   background: var(--crimson);
   color: var(--white);
 }
+
+/* Success Screen */
+.success {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 15px 20px -10px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+}
+
+.success-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.5rem;
+  background: var(--ggreen);
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 100px;
+}
+
+.success h1 {
+  color: var(--ggreen);
+}
+
+.success p {
+  font-size: 1.15rem;
+  color: var(--black);
+  max-width: 400px;
+  margin: 0 auto;
+}
