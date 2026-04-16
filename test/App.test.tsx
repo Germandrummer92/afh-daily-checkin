@@ -1,12 +1,69 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { App } from "../src/App";
 
+vi.mock("../src/auth/supabaseClient", () => {
+  const onAuthStateChange = vi.fn().mockReturnValue({
+    data: { subscription: { unsubscribe: vi.fn() } },
+  });
+  return {
+    supabase: {
+      auth: {
+        getSession: vi.fn().mockResolvedValue({
+          data: { session: null },
+          error: null,
+        }),
+        onAuthStateChange,
+        signInWithPassword: vi.fn(),
+        signUp: vi.fn(),
+        signOut: vi.fn(),
+      },
+    },
+  };
+});
+
+import { supabase } from "../src/auth/supabaseClient";
+
 describe("App", () => {
-  it("renders the Daily Check-In headline", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (supabase.auth.getSession as Mock).mockResolvedValue({
+      data: { session: null },
+      error: null,
+    });
+    (supabase.auth.onAuthStateChange as Mock).mockReturnValue({
+      data: { subscription: { unsubscribe: vi.fn() } },
+    });
+  });
+
+  it("shows the login page when user is not authenticated", async () => {
     render(<App />);
+
     expect(
-      screen.getByRole("heading", { name: "Daily Check-In" }),
+      await screen.findByRole("button", { name: "Log in" }),
+    ).toBeInTheDocument();
+  });
+
+  it("shows the check-in page when user is authenticated", async () => {
+    const fakeSession = {
+      user: { id: "123", email: "test@example.com" },
+      access_token: "token",
+    };
+    (supabase.auth.getSession as Mock).mockResolvedValueOnce({
+      data: { session: fakeSession },
+      error: null,
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText(/welcome/i)).toBeInTheDocument();
+  });
+
+  it("shows the Daily Check-In heading", async () => {
+    render(<App />);
+
+    expect(
+      await screen.findByRole("heading", { name: "Daily Check-In" }),
     ).toBeInTheDocument();
   });
 
