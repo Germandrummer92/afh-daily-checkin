@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "lint": "biome lint .",
     "lint:fix": "biome check --write --unsafe .",
-    "start": "supabase start && pnpm dev"
+    "start": "supabase start && supabase functions serve & pnpm dev"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.103.2",
