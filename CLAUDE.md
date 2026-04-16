@@ -10,6 +10,10 @@
 
 No production code is written without a corresponding test driving it.
 
+## SQL Style
+
+- All SQL keywords MUST be uppercase (e.g. `SELECT`, `CREATE TABLE`, `NOT NULL`, `REFERENCES`)
+
 ## Commands
 
 - `pnpm start` — run the full application (frontend + backend)
