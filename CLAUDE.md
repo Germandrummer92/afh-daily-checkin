@@ -1,5 +1,15 @@
 # Daily Check-In
 
+## Development Practice
+
+**All production code MUST be written using TDD (Red, Green, Refactor):**
+
+1. **Red** — Write a failing test first that describes the desired behavior.
+2. **Green** — Write the minimum production code to make the test pass.
+3. **Refactor** — Clean up the code while keeping all tests green.
+
+No production code is written without a corresponding test driving it.
+
 ## Commands
 
 - `pnpm start` — run the full application (frontend + backend)
